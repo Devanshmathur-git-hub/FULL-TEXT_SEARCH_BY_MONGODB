@@ -28,3 +28,10 @@ productSchema.index({
 });
 
 module.exports = mongoose.model("Product", productSchema);
+
+
+
+
+
+
+

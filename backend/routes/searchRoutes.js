@@ -7,3 +7,7 @@ const { globalSearch } = require("../controllers/searchController");
 router.get("/global-search", globalSearch);
 
 module.exports = router;
+
+
+
+

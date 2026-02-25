@@ -28,3 +28,9 @@ articleSchema.index({
 });
 
 module.exports = mongoose.model("Article", articleSchema);
+
+
+
+
+
+
