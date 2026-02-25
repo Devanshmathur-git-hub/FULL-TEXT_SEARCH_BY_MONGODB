@@ -16,29 +16,63 @@ exports.globalSearch = async (req, res) => {
             });
         }
 
-        // Search in Products collection using MongoDB full-text search
+        // --- OLD: Full-text search (matches whole words only) ---
+        // const products = await Product.find(
+        //     { $text: { $search: searchTerm } },
+        //     {
+        //         score: { $meta: "textScore" },
+        //         name: 1,
+        //         description: 1,
+        //         category: 1,
+        //         price: 1,
+        //     }
+        // ).sort({ score: { $meta: "textScore" } });
+
+        // --- NEW: Regex search (matches per character, e.g. "lap" -> "laptop") ---
         const products = await Product.find(
-            { $text: { $search: searchTerm } },
             {
-                score: { $meta: "textScore" }, // Include relevance score
+                $or: [
+                    { name: { $regex: searchTerm, $options: "i" } },
+                    { description: { $regex: searchTerm, $options: "i" } },
+                    { category: { $regex: searchTerm, $options: "i" } },
+                ]
+            },
+            {
                 name: 1,
                 description: 1,
                 category: 1,
                 price: 1,
             }
-        ).sort({ score: { $meta: "textScore" } }); // Sort by relevance
+        );
 
-        // Search in Articles collection using MongoDB full-text search
+        // --- OLD: Full-text search (matches whole words only) ---
+        // const articles = await Article.find(
+        //     { $text: { $search: searchTerm } },
+        //     {
+        //         score: { $meta: "textScore" },
+        //         title: 1,
+        //         content: 1,
+        //         author: 1,
+        //         tags: 1,
+        //     }
+        // ).sort({ score: { $meta: "textScore" } });
+
+        // --- NEW: Regex search (matches per character, e.g. "mon" -> "mongodb") ---
         const articles = await Article.find(
-            { $text: { $search: searchTerm } },
             {
-                score: { $meta: "textScore" }, // Include relevance score
+                $or: [
+                    { title: { $regex: searchTerm, $options: "i" } },
+                    { content: { $regex: searchTerm, $options: "i" } },
+                    { author: { $regex: searchTerm, $options: "i" } },
+                ]
+            },
+            {
                 title: 1,
                 content: 1,
                 author: 1,
                 tags: 1,
             }
-        ).sort({ score: { $meta: "textScore" } }); // Sort by relevance
+        );
 
         // Combine results from both collections with type label
         const results = [
