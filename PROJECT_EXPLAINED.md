@@ -4,6 +4,7 @@ This document explains **every file**, **every module**, and **every operation**
 
 ---
 
+
 ## 1. Project Overview
 
 **What it does:** A web app that lets users type a search query and see results from **two MongoDB collections** (Products and Articles) in one place, sorted by relevance. Search is powered by **MongoDB full-text search** (text indexes + `$text`).

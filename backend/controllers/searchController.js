@@ -1,6 +1,7 @@
 const Product = require("../models/Product");
 const Article = require("../models/Article");
 
+
 // @desc    Global full-text search across Products and Articles
 // @route   GET /api/global-search?q=search-term
 // @access  Public
