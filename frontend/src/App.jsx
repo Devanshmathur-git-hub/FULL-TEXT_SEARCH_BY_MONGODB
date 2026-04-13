@@ -9,6 +9,7 @@ const HighlightedText = ({ text, query }) => {
   const terms = query.trim().split(/\s+/).filter(t => t.length > 0).sort((a, b) => b.length - a.length);
   if (terms.length === 0) return <span>{text}</span>;
 
+  
   const safeTerms = terms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
   const regex = new RegExp(`(${safeTerms.join('|')})`, 'gi');
   const parts = text.split(regex);

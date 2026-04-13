@@ -8,6 +8,7 @@ const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/globalsear
 
 // Sample Products Data
 const products = [
+    
     {
         name: "Laptop Screen Replacement 15.6 inch",
         description: "High-quality 15.6 inch laptop screen replacement panel. Compatible with most laptop brands including Dell, HP, Lenovo.",
