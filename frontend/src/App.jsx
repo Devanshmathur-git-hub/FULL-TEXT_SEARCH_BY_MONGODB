@@ -25,6 +25,7 @@ const HighlightedText = ({ text, query }) => {
         return <span key={i}>{part}</span>;
       })}
     </span>
+    
   );
 };
 
